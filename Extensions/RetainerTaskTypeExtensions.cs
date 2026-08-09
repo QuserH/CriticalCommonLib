@@ -1,4 +1,5 @@
 using AllaganLib.GameSheets.Model;
+using CriticalCommonLib.Localization;
 
 
 namespace CriticalCommonLib.Extensions
@@ -10,25 +11,25 @@ namespace CriticalCommonLib.Extensions
             switch (retainerTaskType)
             {
                 case RetainerTaskType.Botanist:
-                    return "Botany";
+                    return SharedLocalization.Get("Botany");
                 case RetainerTaskType.FieldExploration:
-                    return "Field Exploration";
+                    return SharedLocalization.Get("Field Exploration");
                 case RetainerTaskType.HighlandExploration:
-                    return "Highland Exploration";
+                    return SharedLocalization.Get("Highland Exploration");
                 case RetainerTaskType.WatersideExploration:
-                    return "Waterside Exploration";
+                    return SharedLocalization.Get("Waterside Exploration");
                 case RetainerTaskType.WoodlandExploration:
-                    return "Woodland Exploration";
+                    return SharedLocalization.Get("Woodland Exploration");
                 case RetainerTaskType.Fishing:
-                    return "Fishing";
+                    return SharedLocalization.Get("Fishing");
                 case RetainerTaskType.Hunting:
-                    return "Hunting";
+                    return SharedLocalization.Get("Hunting");
                 case RetainerTaskType.Mining:
-                    return "Mining";
+                    return SharedLocalization.Get("Mining");
                 case RetainerTaskType.QuickExploration:
-                    return "Quick Exploration";
+                    return SharedLocalization.Get("Quick Exploration");
                 case RetainerTaskType.Unknown:
-                    return "Unknown";
+                    return SharedLocalization.Get("Unknown");
             }
             return retainerTaskType.ToString();
         }

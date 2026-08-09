@@ -1,6 +1,9 @@
 <Project Sdk="Dalamud.NET.Sdk/15.0.0">
   <PropertyGroup>
     <Configurations>Debug;Release;FullDebug</Configurations>
+    <Version>1.15.0.10</Version>
+    <AssemblyVersion>1.15.0.10</AssemblyVersion>
+    <FileVersion>1.15.0.10</FileVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Use_DalamudPackager>false</Use_DalamudPackager>

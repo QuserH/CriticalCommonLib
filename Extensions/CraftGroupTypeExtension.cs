@@ -1,4 +1,5 @@
 using CriticalCommonLib.Crafting;
+using CriticalCommonLib.Localization;
 
 namespace CriticalCommonLib.Extensions;
 
@@ -9,35 +10,35 @@ public static class CraftGroupTypeExtension
         switch (craftGroupType)
         {
             case CraftGroupType.Crystals:
-                return "Crystals";
+                return SharedLocalization.Get("Crystals");
             case CraftGroupType.Currency:
-                return "Currency";
+                return SharedLocalization.Get("Currency");
             case CraftGroupType.Output:
-                return "Output";
+                return SharedLocalization.Get("Output");
             case CraftGroupType.Precraft:
-                return "Precraft";
+                return SharedLocalization.Get("Precraft");
             case CraftGroupType.EverythingElse:
-                return "Gather/Buy";
+                return SharedLocalization.Get("Gather/Buy");
             case CraftGroupType.Retrieve:
-                return "Retrieve";
+                return SharedLocalization.Get("Retrieve");
             case CraftGroupType.HouseVendors:
-                return "House Vendor";
+                return SharedLocalization.Get("House Vendor");
         }
 
-        return "Unknown";
+        return SharedLocalization.Get("Unknown");
     }
     public static string FormattedName(this PrecraftGroupSetting precraftGroupSetting)
     {
         switch (precraftGroupSetting)
         {
             case PrecraftGroupSetting.ByDepth:
-                return "By Depth";
+                return SharedLocalization.Get("By Depth");
             case PrecraftGroupSetting.Together:
-                return "Together";
+                return SharedLocalization.Get("Together");
             case PrecraftGroupSetting.ByClass:
-                return "By Class";
+                return SharedLocalization.Get("By Class");
         }
 
-        return "Unknown";
+        return SharedLocalization.Get("Unknown");
     }
 }

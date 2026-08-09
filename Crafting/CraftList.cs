@@ -2968,7 +2968,7 @@ namespace CriticalCommonLib.Crafting
                 var retrieve = (int)item.QuantityWillRetrieve;
                 if (retrieve != 0)
                 {
-                    return (ImGuiColors.DalamudOrange, "Retrieve " + retrieve);
+                    return (ImGuiColors.DalamudOrange, "取回 " + retrieve);
                 }
             }
 
@@ -2997,26 +2997,26 @@ namespace CriticalCommonLib.Crafting
                     {
                         case IngredientPreferenceType.Botany:
                         case IngredientPreferenceType.Mining:
-                            nextStepString = "Gather " + unavailable;
+                            nextStepString = "采集 " + unavailable;
                             break;
                         case IngredientPreferenceType.Buy:
-                            nextStepString = "Buy " + unavailable + " (Vendor)";
+                            nextStepString = "购买 " + unavailable + "（商人处）";
                             break;
                         case IngredientPreferenceType.HouseVendor:
-                            nextStepString = "Buy " + unavailable + " (House Vendor)";
+                            nextStepString = "购买 " + unavailable + "（房屋商人处）";
                             break;
                         case IngredientPreferenceType.Marketboard:
                             if (item.MarketAvailable == 0 && this.MarketItemPriceOverride.ContainsKey(item.ItemId))
                             {
-                                nextStepString = "No MB pricing, overridden cost for " + item.MarketTotalPrice;
+                                nextStepString = "无市场定价，覆盖成本 " + item.MarketTotalPrice;
                             }
                             else
                             {
-                                nextStepString = "Buy " + item.MarketAvailable + " (MB) for " + item.MarketTotalPrice;
+                                nextStepString = "购买 " + item.MarketAvailable + "（市场）花费 " + item.MarketTotalPrice;
                                 var missing = unavailable - item.MarketAvailable;
                                 if (missing != 0)
                                 {
-                                    nextStepString += " (missing: " + (unavailable - item.MarketAvailable) + ")";
+                                    nextStepString += "（缺少：" + (unavailable - item.MarketAvailable) + "）";
                                 }
                             }
 
@@ -3033,10 +3033,10 @@ namespace CriticalCommonLib.Crafting
                                 {
                                     if (item.Item.CanBeCrafted)
                                     {
-                                        nextStepString = "Craft " + item.CraftOperationsRequired;
+                                        nextStepString = "制作 " + item.CraftOperationsRequired;
                                         if (item.Yield != 1)
                                         {
-                                            nextStepString += " (" + item.Yield + ")";
+                                            nextStepString += "（×" + item.Yield + "）";
                                         }
                                         stepColour = ImGuiColors.ParsedBlue;
                                     }
@@ -3046,15 +3046,15 @@ namespace CriticalCommonLib.Crafting
                             {
                                 //Special case
                                 stepColour = ImGuiColors.DalamudRed;
-                                nextStepString = "Ingredients Missing";
+                                nextStepString = "缺少的素材";
                             }
 
                             break;
                         case IngredientPreferenceType.Fishing:
-                            nextStepString = "Fish for " + unavailable;
+                            nextStepString = "钓鱼获取 " + unavailable;
                             break;
                         case IngredientPreferenceType.SpearFishing:
-                            nextStepString = "Spearfish for " + unavailable;
+                            nextStepString = "刺鱼获取 " + unavailable;
                             break;
                         case IngredientPreferenceType.Item:
                             if (ingredientPreference.LinkedItemId != null &&
@@ -3066,26 +3066,26 @@ namespace CriticalCommonLib.Crafting
                                     {
                                         var linkedItem = _itemSheet
                                             .GetRow(item.IngredientPreference.ItemId);
-                                        nextStepString = "Purchase " + item.QuantityCanCraft + " " + linkedItem?.NameString ?? "Unknown";
+                                        nextStepString = "购买 " + item.QuantityCanCraft + " " + (linkedItem?.NameString ?? "未知");
                                         stepColour = ImGuiColors.DalamudYellow;
                                     }
                                 }
                                 else
                                 {
                                     stepColour = ImGuiColors.DalamudRed;
-                                    nextStepString = "Ingredients Missing";
+                                    nextStepString = "缺少的素材";
                                 }
                                 break;
                             }
 
-                            nextStepString = "No item selected";
+                            nextStepString = "未选择物品";
                             break;
                         case IngredientPreferenceType.Venture:
                             var ventures = item.Item.GetSourcesByType<ItemVentureSource>(ItemInfoType.BotanyVenture,
                                     ItemInfoType.CombatVenture, ItemInfoType.FishingVenture, ItemInfoType.MiningVenture)
                                 .Select(c => c.RetainerTaskRow.FormattedName);
                             var ventureNames = String.Join(", ", ventures);
-                            nextStepString = "Gather " + unavailable + " (Venture: " + ventureNames + ")";
+                            nextStepString = "采集 " + unavailable + "（委托：" + ventureNames + "）";
                             ;
                             break;
                         case IngredientPreferenceType.ExplorationVenture:
@@ -3093,18 +3093,18 @@ namespace CriticalCommonLib.Crafting
                                     ItemInfoType.CombatExplorationVenture, ItemInfoType.FishingExplorationVenture, ItemInfoType.MiningExplorationVenture)
                                 .Select(c => c.RetainerTaskRow.FormattedName);
                             var explorationVentureNames = String.Join(", ", explorationVentures);
-                            nextStepString = "Gather " + unavailable + " (Venture: " + explorationVentureNames + ")";
+                            nextStepString = "采集 " + unavailable + "（委托：" + explorationVentureNames + "）";
                             ;
                             break;
                         case IngredientPreferenceType.Empty:
-                            nextStepString = "Do Nothing";
+                            nextStepString = "不执行任何操作";
                             ;
                             break;
                         case IngredientPreferenceType.Gardening:
-                            nextStepString = "Harvest(Gardening): " + unavailable;
+                            nextStepString = "收获（园艺）：" + unavailable;
                             break;
                         case IngredientPreferenceType.ResourceInspection:
-                            nextStepString = "Resource Inspection: " + unavailable;
+                            nextStepString = "资源调查：" + unavailable;
                             break;
                         case IngredientPreferenceType.Reduction:
                             if (ingredientPreference.LinkedItemId != null &&
@@ -3116,39 +3116,39 @@ namespace CriticalCommonLib.Crafting
                                     {
                                         var linkedItem = _itemSheet
                                             .GetRow(item.IngredientPreference.LinkedItemId!.Value);
-                                        nextStepString = "Reduce " + item.QuantityCanCraft + " " + linkedItem?.NameString ?? "Unknown";
+                                        nextStepString = "分解 " + item.QuantityCanCraft + " " + (linkedItem?.NameString ?? "未知");
                                         stepColour = ImGuiColors.DalamudYellow;
                                     }
                                 }
                                 else
                                 {
                                     stepColour = ImGuiColors.DalamudRed;
-                                    nextStepString = "Ingredients Missing";
+                                    nextStepString = "缺少的素材";
                                 }
                                 break;
                             }
                             break;
                         case IngredientPreferenceType.Desynthesis:
-                            nextStepString = "Desynthesize " + unavailable;
+                            nextStepString = "分解 " + unavailable;
                             break;
                         case IngredientPreferenceType.Mobs:
-                            nextStepString = "Hunt " + unavailable;
+                            nextStepString = "狩猎 " + unavailable;
                             break;
                         case IngredientPreferenceType.Duty:
                             if (item.ContentFinderConditionId == null)
                             {
-                                nextStepString = "Run Duty";
+                                nextStepString = "进行副本";
                             }
                             else
                             {
                                 var contentFinderCondition = _contentFinderConditionSheet.GetRowOrDefault(item.ContentFinderConditionId.Value);
                                 if (contentFinderCondition == null)
                                 {
-                                    nextStepString = "Unknown Duty";
+                                    nextStepString = "未知副本";
                                 }
                                 else
                                 {
-                                    nextStepString = "Run " + contentFinderCondition.FormattedName;
+                                    nextStepString = "进行 " + contentFinderCondition.FormattedName;
                                 }
                             }
 
@@ -3165,7 +3165,7 @@ namespace CriticalCommonLib.Crafting
             var canCraft = item.QuantityCanCraft;
             if (canCraft != 0 && (int)item.QuantityWillRetrieve == 0)
             {
-                return (ImGuiColors.ParsedBlue, "Craft " + (uint)Math.Ceiling((double)canCraft / item.Yield));
+                return (ImGuiColors.ParsedBlue, "制作 " + (uint)Math.Ceiling((double)canCraft / item.Yield));
             }
 
             if (this.RetainerRetrieveOrder == RetainerRetrieveOrder.RetrieveLast)
@@ -3173,21 +3173,21 @@ namespace CriticalCommonLib.Crafting
                 var retrieve = (int)item.QuantityWillRetrieve;
                 if (retrieve != 0)
                 {
-                    return (ImGuiColors.DalamudOrange, "Retrieve " + retrieve);
+                    return (ImGuiColors.DalamudOrange, "取回 " + retrieve);
                 }
             }
             if (unavailable != 0)
             {
                 if (item.Item.ObtainedGathering)
                 {
-                    return (ImGuiColors.DalamudYellow, "Gather " + unavailable);
+                    return (ImGuiColors.DalamudYellow, "采集 " + unavailable);
                 }
                 else if (item.Item.HasSourcesByType(ItemInfoType.GilShop, ItemInfoType.CalamitySalvagerShop))
                 {
-                    return (ImGuiColors.DalamudYellow, "Buy " + unavailable);
+                    return (ImGuiColors.DalamudYellow, "购买 " + unavailable);
 
                 }
-                return (ImGuiColors.DalamudRed, "Missing " + unavailable);
+                return (ImGuiColors.DalamudRed, "缺少 " + unavailable);
             }
 
 
@@ -3195,14 +3195,14 @@ namespace CriticalCommonLib.Crafting
             {
                 if (item.IsCompleted)
                 {
-                    return (ImGuiColors.HealerGreen, "Completed");
+                    return (ImGuiColors.HealerGreen, "已完成");
                 }
                 else
                 {
-                    return (ImGuiColors.DalamudWhite, "Waiting");
+                    return (ImGuiColors.DalamudWhite, "等待中");
                 }
             }
-            return (ImGuiColors.HealerGreen, "Done");
+            return (ImGuiColors.HealerGreen, "完成");
         }
 
         public CraftList? Clone(CraftList newList)

@@ -143,21 +143,20 @@ namespace CriticalCommonLib.Models
 
                         var zoneName = Territory?.PlaceNameZone.ValueNullable?.Name.ExtractText() ?? "Unknown";
 
-                        strings.Add($"{zoneName} -");
-                        strings.Add($"Ward {ward}");
-                        if (division == 2 || plot is >= 30 or -127) strings.Add($"Subdivision");
+                        strings.Add($"{zoneName}");
 
                         switch (plot)
                         {
                             case < -1:
-                                strings.Add($"Apartment {(room == 0 ? $"Lobby" : $"{room}")}");
+                                strings.Add($"公寓{(room == 0 ? $"大厅" : $"{room}室")}");
                                 break;
                             case > -1:
                             {
-                                strings.Add($"Plot {plot + 1}");
+                                strings.Add($"{ward}区");
+                                strings.Add($"{plot + 1}号");
                                 if (room > 0)
                                 {
-                                    strings.Add($"Room {room}");
+                                    strings.Add($"{room}室");
                                 }
 
                                 break;

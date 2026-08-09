@@ -4,6 +4,7 @@ using System.Linq;
 using AllaganLib.GameSheets.Model;
 using CriticalCommonLib.Enums;
 using CriticalCommonLib.Models;
+using CriticalCommonLib.Localization;
 
 namespace CriticalCommonLib.Extensions
 {
@@ -20,48 +21,48 @@ namespace CriticalCommonLib.Extensions
             switch (characterSex)
             {
                 case CharacterSex.Both:
-                    return "Both";
+                    return SharedLocalization.Get("Both");
                 case CharacterSex.Either:
-                    return "Either";
+                    return SharedLocalization.Get("Either");
                 case CharacterSex.Female:
-                    return "Female";
+                    return SharedLocalization.Get("Female");
                 case CharacterSex.Male:
-                    return "Male";
+                    return SharedLocalization.Get("Male");
                 case CharacterSex.FemaleOnly:
-                    return "Female Only";
+                    return SharedLocalization.Get("Female Only");
                 case CharacterSex.MaleOnly:
-                    return "Male Only";
+                    return SharedLocalization.Get("Male Only");
                 case CharacterSex.NotApplicable:
-                    return "N/A";
+                    return SharedLocalization.Get("N/A");
             }
 
-            return "Unknown";
+            return SharedLocalization.Get("Unknown");
         }
         public static string FormattedName(this CharacterRace characterRace)
         {
             switch (characterRace)
             {
                 case CharacterRace.Any:
-                    return "Any";
+                    return SharedLocalization.Get("Any");
                 case CharacterRace.Hyur:
-                    return "Hyur";
+                    return SharedLocalization.Get("Hyur");
                 case CharacterRace.Elezen:
-                    return "Elezen";
+                    return SharedLocalization.Get("Elezen");
                 case CharacterRace.Lalafell:
-                    return "Lalafell";
+                    return SharedLocalization.Get("Lalafell");
                 case CharacterRace.Miqote:
-                    return "Miqote";
+                    return SharedLocalization.Get("Miqote");
                 case CharacterRace.Roegadyn:
-                    return "Roegadyn";
+                    return SharedLocalization.Get("Roegadyn");
                 case CharacterRace.Viera:
-                    return "Viera";
+                    return SharedLocalization.Get("Viera");
                 case CharacterRace.AuRa:
-                    return "Au Ra";
+                    return SharedLocalization.Get("Au Ra");
                 case CharacterRace.None:
-                    return "None";
+                    return SharedLocalization.Get("None");
             }
 
-            return "N/A";
+            return SharedLocalization.Get("N/A");
         }
 
         public static List<InventoryType> GetTypes(this InventoryCategory category)
@@ -318,43 +319,43 @@ namespace CriticalCommonLib.Extensions
             switch (category)
             {
                 case InventoryCategory.CharacterBags:
-                    return "Bags";
+                    return SharedLocalization.Get("Bags");
                 case InventoryCategory.CharacterSaddleBags:
-                    return "Saddle Bags";
+                    return SharedLocalization.Get("Saddle Bags");
                 case InventoryCategory.CharacterPremiumSaddleBags:
-                    return "Premium Saddle Bags";
+                    return SharedLocalization.Get("Premium Saddle Bags");
                 case InventoryCategory.FreeCompanyBags:
-                    return "Free Company Bags";
+                    return SharedLocalization.Get("Free Company Bags");
                 case InventoryCategory.CharacterArmoryChest:
-                    return "Armoury Chest";
+                    return SharedLocalization.Get("Armoury Chest");
                 case InventoryCategory.GlamourChest:
-                    return "Glamour Chest";
+                    return SharedLocalization.Get("Glamour Chest");
                 case InventoryCategory.CharacterEquipped:
-                    return "Equipped";
+                    return SharedLocalization.Get("Equipped");
                 case InventoryCategory.Armoire:
-                    return "Armoire";
+                    return SharedLocalization.Get("Armoire");
                 case InventoryCategory.RetainerBags:
-                    return "Bags";
+                    return SharedLocalization.Get("Bags");
                 case InventoryCategory.RetainerMarket:
-                    return "Market";
+                    return SharedLocalization.Get("Market");
                 case InventoryCategory.Currency:
-                    return "Currency";
+                    return SharedLocalization.Get("Currency");
                 case InventoryCategory.Crystals:
-                    return "Crystals";
+                    return SharedLocalization.Get("Crystals");
                 case InventoryCategory.HousingExteriorAppearance:
-                    return "Housing Exterior Appearance";
+                    return SharedLocalization.Get("Housing Exterior Appearance");
                 case InventoryCategory.HousingExteriorItems:
-                    return "Housing Exterior Items";
+                    return SharedLocalization.Get("Housing Exterior Items");
                 case InventoryCategory.HousingExteriorStoreroom:
-                    return "Housing Exterior Storeroom";
+                    return SharedLocalization.Get("Housing Exterior Storeroom");
                 case InventoryCategory.HousingInteriorAppearance:
-                    return "Housing Interior Appearance";
+                    return SharedLocalization.Get("Housing Interior Appearance");
                 case InventoryCategory.HousingInteriorItems:
-                    return "Housing Interior Items";
+                    return SharedLocalization.Get("Housing Interior Items");
                 case InventoryCategory.HousingInteriorStoreroom:
-                    return "Housing Interior Storeroom";
+                    return SharedLocalization.Get("Housing Interior Storeroom");
                 case InventoryCategory.RetainerEquipped:
-                    return "Equipped";
+                    return SharedLocalization.Get("Equipped");
             }
 
             return category.ToString();
@@ -365,43 +366,43 @@ namespace CriticalCommonLib.Extensions
             switch (category)
             {
                 case InventoryCategory.CharacterBags:
-                    return "Character Bags";
+                    return SharedLocalization.Get("Character Bags");
                 case InventoryCategory.CharacterSaddleBags:
-                    return "Saddle Bags";
+                    return SharedLocalization.Get("Saddle Bags");
                 case InventoryCategory.CharacterPremiumSaddleBags:
-                    return "Premium Saddle Bags";
+                    return SharedLocalization.Get("Premium Saddle Bags");
                 case InventoryCategory.FreeCompanyBags:
-                    return "Free Company Bags";
+                    return SharedLocalization.Get("Free Company Bags");
                 case InventoryCategory.CharacterArmoryChest:
-                    return "Armoury Chest";
+                    return SharedLocalization.Get("Armoury Chest");
                 case InventoryCategory.GlamourChest:
-                    return "Glamour Chest";
+                    return SharedLocalization.Get("Glamour Chest");
                 case InventoryCategory.CharacterEquipped:
-                    return "Character Equipped";
+                    return SharedLocalization.Get("Character Equipped");
                 case InventoryCategory.Armoire:
-                    return "Armoire";
+                    return SharedLocalization.Get("Armoire");
                 case InventoryCategory.RetainerBags:
-                    return "Retainer Bags";
+                    return SharedLocalization.Get("Retainer Bags");
                 case InventoryCategory.RetainerMarket:
-                    return "Retainer Market";
+                    return SharedLocalization.Get("Retainer Market");
                 case InventoryCategory.Currency:
-                    return "Currency";
+                    return SharedLocalization.Get("Currency");
                 case InventoryCategory.Crystals:
-                    return "Crystals";
+                    return SharedLocalization.Get("Crystals");
                 case InventoryCategory.HousingExteriorAppearance:
-                    return "Housing Exterior Appearance";
+                    return SharedLocalization.Get("Housing Exterior Appearance");
                 case InventoryCategory.HousingExteriorItems:
-                    return "Housing Exterior Items";
+                    return SharedLocalization.Get("Housing Exterior Items");
                 case InventoryCategory.HousingExteriorStoreroom:
-                    return "Housing Exterior Storeroom";
+                    return SharedLocalization.Get("Housing Exterior Storeroom");
                 case InventoryCategory.HousingInteriorAppearance:
-                    return "Housing Interior Appearance";
+                    return SharedLocalization.Get("Housing Interior Appearance");
                 case InventoryCategory.HousingInteriorItems:
-                    return "Housing Interior Items";
+                    return SharedLocalization.Get("Housing Interior Items");
                 case InventoryCategory.HousingInteriorStoreroom:
-                    return "Housing Interior Storeroom";
+                    return SharedLocalization.Get("Housing Interior Storeroom");
                 case InventoryCategory.RetainerEquipped:
-                    return "Retainer Equipped";
+                    return SharedLocalization.Get("Retainer Equipped");
             }
 
             return category.ToString();
@@ -412,179 +413,179 @@ namespace CriticalCommonLib.Extensions
             switch (type)
             {
                 case InventoryType.Bag0:
-                    return "Main Bags - 1";
+                    return SharedLocalization.Get("Main Bags - 1");
                 case InventoryType.Bag1:
-                    return "Main Bags - 2";
+                    return SharedLocalization.Get("Main Bags - 2");
                 case InventoryType.Bag2:
-                    return "Main Bags - 3";
+                    return SharedLocalization.Get("Main Bags - 3");
                 case InventoryType.Bag3:
-                    return "Main Bags - 4";
+                    return SharedLocalization.Get("Main Bags - 4");
                 case InventoryType.GearSet0:
-                    return "Gearset - 1";
+                    return SharedLocalization.Get("Gearset - 1");
                 case InventoryType.GearSet1:
-                    return "Gearset - 2";
+                    return SharedLocalization.Get("Gearset - 2");
                 case InventoryType.Currency:
-                    return "Currency";
+                    return SharedLocalization.Get("Currency");
                 case InventoryType.Crystal:
-                    return "Crystal";
+                    return SharedLocalization.Get("Crystal");
                 case InventoryType.Mail:
-                    return "Mail";
+                    return SharedLocalization.Get("Mail");
                 case InventoryType.KeyItem:
-                    return "Key Item";
+                    return SharedLocalization.Get("Key Item");
                 case InventoryType.HandIn:
-                    return "Hand-in";
+                    return SharedLocalization.Get("Hand-in");
                 case InventoryType.DamagedGear:
-                    return "Damaged Gear";
+                    return SharedLocalization.Get("Damaged Gear");
                 case InventoryType.UNKNOWN_2008:
                     break;
                 case InventoryType.Examine:
-                    return "Examine";
+                    return SharedLocalization.Get("Examine");
                 case InventoryType.Armoire:
-                    return "Armoire";
+                    return SharedLocalization.Get("Armoire");
                 case InventoryType.GlamourChest:
-                    return "Glamour Chest";
+                    return SharedLocalization.Get("Glamour Chest");
                 case InventoryType.FreeCompanyCurrency:
-                    return "Free Company Currency";
+                    return SharedLocalization.Get("Free Company Currency");
                 case InventoryType.ArmoryOff:
-                    return "Armoury - Off Hand";
+                    return SharedLocalization.Get("Armoury - Off Hand");
                 case InventoryType.ArmoryHead:
-                    return "Armoury - Head";
+                    return SharedLocalization.Get("Armoury - Head");
                 case InventoryType.ArmoryBody:
-                    return "Armoury - Body";
+                    return SharedLocalization.Get("Armoury - Body");
                 case InventoryType.ArmoryHand:
-                    return "Armoury - Hand";
+                    return SharedLocalization.Get("Armoury - Hand");
                 case InventoryType.ArmoryWaist:
-                    return "Armoury - Waist";
+                    return SharedLocalization.Get("Armoury - Waist");
                 case InventoryType.ArmoryLegs:
-                    return "Armoury - Legs";
+                    return SharedLocalization.Get("Armoury - Legs");
                 case InventoryType.ArmoryFeet:
-                    return "Armoury - Feet";
+                    return SharedLocalization.Get("Armoury - Feet");
                 case InventoryType.ArmoryEar:
-                    return "Armoury - Ears";
+                    return SharedLocalization.Get("Armoury - Ears");
                 case InventoryType.ArmoryNeck:
-                    return "Armoury - Neck";
+                    return SharedLocalization.Get("Armoury - Neck");
                 case InventoryType.ArmoryWrist:
-                    return "Armoury - Wrist";
+                    return SharedLocalization.Get("Armoury - Wrist");
                 case InventoryType.ArmoryRing:
-                    return "Armoury - Rings";
+                    return SharedLocalization.Get("Armoury - Rings");
                 case InventoryType.ArmorySoulCrystal:
-                    return "Armoury - Soul Crystals";
+                    return SharedLocalization.Get("Armoury - Soul Crystals");
                 case InventoryType.ArmoryMain:
-                    return "Armoury - Main Hand";
+                    return SharedLocalization.Get("Armoury - Main Hand");
                 case InventoryType.SaddleBag0:
-                    return "Saddlebag - 1";
+                    return SharedLocalization.Get("Saddlebag - 1");
                 case InventoryType.SaddleBag1:
-                    return "Saddlebag - 2";
+                    return SharedLocalization.Get("Saddlebag - 2");
                 case InventoryType.PremiumSaddleBag0:
-                    return "Premium Saddlebag - 1";
+                    return SharedLocalization.Get("Premium Saddlebag - 1");
                 case InventoryType.PremiumSaddleBag1:
-                    return "Premium Saddlebag - 2";
+                    return SharedLocalization.Get("Premium Saddlebag - 2");
                 case InventoryType.RetainerBag0:
-                    return "Retainer Bag - 1";
+                    return SharedLocalization.Get("Retainer Bag - 1");
                 case InventoryType.RetainerBag1:
-                    return "Retainer Bag - 2";
+                    return SharedLocalization.Get("Retainer Bag - 2");
                 case InventoryType.RetainerBag2:
-                    return "Retainer Bag - 3";
+                    return SharedLocalization.Get("Retainer Bag - 3");
                 case InventoryType.RetainerBag3:
-                    return "Retainer Bag - 4";
+                    return SharedLocalization.Get("Retainer Bag - 4");
                 case InventoryType.RetainerBag4:
-                    return "Retainer Bag - 5";
+                    return SharedLocalization.Get("Retainer Bag - 5");
                 case InventoryType.RetainerBag5:
-                    return "Retainer Bag - 6";
+                    return SharedLocalization.Get("Retainer Bag - 6");
                 case InventoryType.RetainerBag6:
-                    return "Retainer Bag - 7";
+                    return SharedLocalization.Get("Retainer Bag - 7");
                 case InventoryType.RetainerEquippedGear:
-                    return "Retainer Equipped Gear";
+                    return SharedLocalization.Get("Retainer Equipped Gear");
                 case InventoryType.RetainerGil:
-                    return "Retainer Gil";
+                    return SharedLocalization.Get("Retainer Gil");
                 case InventoryType.RetainerCrystal:
-                    return "Retainer Crystal";
+                    return SharedLocalization.Get("Retainer Crystal");
                 case InventoryType.RetainerMarket:
-                    return "Retainer Market";
+                    return SharedLocalization.Get("Retainer Market");
                 case InventoryType.FreeCompanyBag0:
-                    return "Free Company Bag - 1";
+                    return SharedLocalization.Get("Free Company Bag - 1");
                 case InventoryType.FreeCompanyBag1:
-                    return "Free Company Bag - 2";
+                    return SharedLocalization.Get("Free Company Bag - 2");
                 case InventoryType.FreeCompanyBag2:
-                    return "Free Company Bag - 3";
+                    return SharedLocalization.Get("Free Company Bag - 3");
                 case InventoryType.FreeCompanyBag3:
-                    return "Free Company Bag - 4";
+                    return SharedLocalization.Get("Free Company Bag - 4");
                 case InventoryType.FreeCompanyBag4:
-                    return "Free Company Bag - 5";
+                    return SharedLocalization.Get("Free Company Bag - 5");
                 case InventoryType.FreeCompanyBag5:
-                    return "Free Company Bag - 6";
+                    return SharedLocalization.Get("Free Company Bag - 6");
                 case InventoryType.FreeCompanyBag6:
-                    return "Free Company Bag - 7";
+                    return SharedLocalization.Get("Free Company Bag - 7");
                 case InventoryType.FreeCompanyBag7:
-                    return "Free Company Bag - 8";
+                    return SharedLocalization.Get("Free Company Bag - 8");
                 case InventoryType.FreeCompanyBag8:
-                    return "Free Company Bag - 9";
+                    return SharedLocalization.Get("Free Company Bag - 9");
                 case InventoryType.FreeCompanyBag9:
-                    return "Free Company Bag - 10";
+                    return SharedLocalization.Get("Free Company Bag - 10");
                 case InventoryType.FreeCompanyBag10:
-                    return "Free Company Bag - 11";
+                    return SharedLocalization.Get("Free Company Bag - 11");
                 case InventoryType.FreeCompanyGil:
-                    return "Free Company Bag - Gil";
+                    return SharedLocalization.Get("Free Company Bag - Gil");
                 case InventoryType.FreeCompanyCrystal:
-                    return "Free Company Bag - Crystal";
+                    return SharedLocalization.Get("Free Company Bag - Crystal");
                 case InventoryType.HousingInteriorAppearance:
-                    return "House - Interior Appearance";
+                    return SharedLocalization.Get("House - Interior Appearance");
                 case InventoryType.HousingInteriorPlacedItems1:
-                    return "House - Interior Placed Items - 1";
+                    return SharedLocalization.Get("House - Interior Placed Items - 1");
                 case InventoryType.HousingInteriorPlacedItems2:
-                    return "House - Interior Placed Items - 2";
+                    return SharedLocalization.Get("House - Interior Placed Items - 2");
                 case InventoryType.HousingInteriorPlacedItems3:
-                    return "House - Interior Placed Items - 3";
+                    return SharedLocalization.Get("House - Interior Placed Items - 3");
                 case InventoryType.HousingInteriorPlacedItems4:
-                    return "House - Interior Placed Items - 4";
+                    return SharedLocalization.Get("House - Interior Placed Items - 4");
                 case InventoryType.HousingInteriorPlacedItems5:
-                    return "House - Interior Placed Items - 5";
+                    return SharedLocalization.Get("House - Interior Placed Items - 5");
                 case InventoryType.HousingInteriorPlacedItems6:
-                    return "House - Interior Placed Items - 6";
+                    return SharedLocalization.Get("House - Interior Placed Items - 6");
                 case InventoryType.HousingInteriorPlacedItems7:
-                    return "House - Interior Placed Items - 7";
+                    return SharedLocalization.Get("House - Interior Placed Items - 7");
                 case InventoryType.HousingInteriorPlacedItems8:
-                    return "House - Interior Placed Items - 8";
+                    return SharedLocalization.Get("House - Interior Placed Items - 8");
                 case InventoryType.HousingInteriorPlacedItems9:
-                    return "House - Interior Placed Items - 9";
+                    return SharedLocalization.Get("House - Interior Placed Items - 9");
                 case InventoryType.HousingInteriorPlacedItems10:
-                    return "House - Interior Placed Items - 10";
+                    return SharedLocalization.Get("House - Interior Placed Items - 10");
                 case InventoryType.HousingInteriorPlacedItems11:
-                    return "House - Interior Placed Items - 11";
+                    return SharedLocalization.Get("House - Interior Placed Items - 11");
                 case InventoryType.HousingInteriorPlacedItems12:
-                    return "House - Interior Placed Items - 12";
+                    return SharedLocalization.Get("House - Interior Placed Items - 12");
                 case InventoryType.HousingInteriorStoreroom1:
-                    return "House - Interior Storeroom - 1";
+                    return SharedLocalization.Get("House - Interior Storeroom - 1");
                 case InventoryType.HousingInteriorStoreroom2:
-                    return "House - Interior Storeroom - 2";
+                    return SharedLocalization.Get("House - Interior Storeroom - 2");
                 case InventoryType.HousingInteriorStoreroom3:
-                    return "House - Interior Storeroom - 3";
+                    return SharedLocalization.Get("House - Interior Storeroom - 3");
                 case InventoryType.HousingInteriorStoreroom4:
-                    return "House - Interior Storeroom - 4";
+                    return SharedLocalization.Get("House - Interior Storeroom - 4");
                 case InventoryType.HousingInteriorStoreroom5:
-                    return "House - Interior Storeroom - 5";
+                    return SharedLocalization.Get("House - Interior Storeroom - 5");
                 case InventoryType.HousingInteriorStoreroom6:
-                    return "House - Interior Storeroom - 6";
+                    return SharedLocalization.Get("House - Interior Storeroom - 6");
                 case InventoryType.HousingInteriorStoreroom7:
-                    return "House - Interior Storeroom - 7";
+                    return SharedLocalization.Get("House - Interior Storeroom - 7");
                 case InventoryType.HousingInteriorStoreroom8:
-                    return "House - Interior Storeroom - 8";
+                    return SharedLocalization.Get("House - Interior Storeroom - 8");
                 case InventoryType.HousingInteriorStoreroom9:
-                    return "House - Interior Storeroom - 9";
+                    return SharedLocalization.Get("House - Interior Storeroom - 9");
                 case InventoryType.HousingInteriorStoreroom10:
-                    return "House - Interior Storeroom - 10";
+                    return SharedLocalization.Get("House - Interior Storeroom - 10");
                 case InventoryType.HousingInteriorStoreroom11:
-                    return "House - Interior Storeroom - 11";
+                    return SharedLocalization.Get("House - Interior Storeroom - 11");
                 case InventoryType.HousingExteriorAppearance:
-                    return "House - Exterior Appearance";
+                    return SharedLocalization.Get("House - Exterior Appearance");
                 case InventoryType.HousingExteriorPlacedItems:
-                    return "House - Exterior Placed Items";
+                    return SharedLocalization.Get("House - Exterior Placed Items");
                 case InventoryType.HousingExteriorPlacedItems2:
-                    return "House - Exterior Placed Items - 2";
+                    return SharedLocalization.Get("House - Exterior Placed Items - 2");
                 case InventoryType.HousingExteriorStoreroom:
-                    return "House - Exterior Storeroom";
+                    return SharedLocalization.Get("House - Exterior Storeroom");
                 case InventoryType.HousingExteriorStoreroom2:
-                    return "House - Exterior Storeroom - 2";
+                    return SharedLocalization.Get("House - Exterior Storeroom - 2");
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
@@ -598,57 +599,57 @@ namespace CriticalCommonLib.Extensions
                 return FormattedName(category.Value);
             }
 
-            return "Unknown";
+            return SharedLocalization.Get("Unknown");
         }
         public static string FormattedName(this InventoryChangeReason reason)
         {
             switch (reason)
             {
                 case InventoryChangeReason.Added:
-                    return "Added";
+                    return SharedLocalization.Get("Added");
                 case InventoryChangeReason.Removed:
-                    return "Removed";
+                    return SharedLocalization.Get("Removed");
                 case InventoryChangeReason.Moved:
-                    return "Moved";
+                    return SharedLocalization.Get("Moved");
                 case InventoryChangeReason.ConditionChanged:
-                    return "Condition Changed";
+                    return SharedLocalization.Get("Condition Changed");
                 case InventoryChangeReason.FlagsChanged:
-                    return "NQ/HQ Changed";
+                    return SharedLocalization.Get("NQ/HQ Changed");
                 case InventoryChangeReason.GlamourChanged:
-                    return "Glamour Changed";
+                    return SharedLocalization.Get("Glamour Changed");
                 case InventoryChangeReason.MateriaChanged:
-                    return "Materia Changed";
+                    return SharedLocalization.Get("Materia Changed");
                 case InventoryChangeReason.QuantityChanged:
-                    return "Quantity Changed";
+                    return SharedLocalization.Get("Quantity Changed");
                 case InventoryChangeReason.SpiritbondChanged:
-                    return "Spiritbond Changed";
+                    return SharedLocalization.Get("Spiritbond Changed");
                 case InventoryChangeReason.StainChanged:
-                    return "Dye Changed";
+                    return SharedLocalization.Get("Dye Changed");
                 case InventoryChangeReason.ItemIdChanged:
-                    return "Item Changed";
+                    return SharedLocalization.Get("Item Changed");
                 case InventoryChangeReason.Transferred:
-                    return "Transferred";
+                    return SharedLocalization.Get("Transferred");
                 case InventoryChangeReason.MarketPriceChanged:
-                    return "Market Price Changed";
+                    return SharedLocalization.Get("Market Price Changed");
                 case InventoryChangeReason.GearsetsChanged:
-                    return "Gearsets Changed";
+                    return SharedLocalization.Get("Gearsets Changed");
             }
-            return "Unknown";
+            return SharedLocalization.Get("Unknown");
         }
         public static string FormattedName(this CharacterType characterType)
         {
             switch (characterType)
             {
                 case CharacterType.Character:
-                    return "Character";
+                    return SharedLocalization.Get("Character");
                 case CharacterType.Housing:
-                    return "Residence";
+                    return SharedLocalization.Get("Residence");
                 case CharacterType.Retainer:
-                    return "Retainer";
+                    return SharedLocalization.Get("Retainer");
                 case CharacterType.FreeCompanyChest:
-                    return "Free Company Chest";
+                    return SharedLocalization.Get("Free Company Chest");
             }
-            return "Unknown";
+            return SharedLocalization.Get("Unknown");
         }
         public static bool IsApplicable(this InventoryCategory inventoryCategory, CharacterType characterType)
         {
@@ -665,6 +666,25 @@ namespace CriticalCommonLib.Extensions
             }
 
             return true;
+        }
+        public static string FormattedName(this PlotSize plotSize)
+        {
+            switch (plotSize)
+            {
+                case PlotSize.Cottage:
+                    return "S房";
+                case PlotSize.House:
+                    return "M房";
+                case PlotSize.Mansion:
+                    return "L房";
+                case PlotSize.Apartment:
+                    return "公寓";
+                case PlotSize.Room:
+                    return "个人房间";
+                case PlotSize.Unknown:
+                    return "未知";
+            }
+            return "未知";
         }
     }
 }

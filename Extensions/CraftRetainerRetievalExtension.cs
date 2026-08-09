@@ -1,5 +1,6 @@
 using System;
 using CriticalCommonLib.Crafting;
+using CriticalCommonLib.Localization;
 
 namespace CriticalCommonLib.Extensions
 {
@@ -10,15 +11,15 @@ namespace CriticalCommonLib.Extensions
             switch (craftRetainerRetrieval)
             {
                 case CraftRetainerRetrieval.Yes:
-                    return "Yes";
+                    return SharedLocalization.Get("Yes");
                 case CraftRetainerRetrieval.No:
-                    return "No";
+                    return SharedLocalization.Get("No");
                 case CraftRetainerRetrieval.HqOnly:
-                    return "HQ Only";
+                    return SharedLocalization.Get("HQ Only");
                 case CraftRetainerRetrieval.NqOnly:
-                    return "NQ Only";
+                    return SharedLocalization.Get("NQ Only");
                 case CraftRetainerRetrieval.CollectableOnly:
-                    return "Collectable Only";
+                    return SharedLocalization.Get("Collectable Only");
             }
             return craftRetainerRetrieval.ToString();
         }

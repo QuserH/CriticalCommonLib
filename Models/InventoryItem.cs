@@ -7,6 +7,7 @@ using AllaganLib.GameSheets.Sheets;
 using AllaganLib.GameSheets.Sheets.Rows;
 using CriticalCommonLib.Enums;
 using CriticalCommonLib.Extensions;
+using CriticalCommonLib.Localization;
 using CriticalCommonLib.GameStructs;
 using CriticalCommonLib.Interfaces;
 
@@ -321,7 +322,7 @@ namespace CriticalCommonLib.Models
             {
                 if (ItemId == 0)
                 {
-                    return "Empty Slot";
+                    return Localization.SharedLocalization.Get("Empty Slot");
                 }
                 return Item.NameString;
             }

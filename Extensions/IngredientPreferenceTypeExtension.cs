@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using AllaganLib.GameSheets.Caches;
 using CriticalCommonLib.Crafting;
+using CriticalCommonLib.Localization;
 
 namespace CriticalCommonLib.Extensions;
 
@@ -137,41 +138,41 @@ public static class IngredientPreferenceTypeExtension
         switch (ingredientPreferenceType)
         {
             case IngredientPreferenceType.Botany:
-                return "Botany";
+                return SharedLocalization.Get("Botany");
             case IngredientPreferenceType.Buy:
-                return "Buy from Vendor";
+                return SharedLocalization.Get("Buy from Vendor");
             case IngredientPreferenceType.HouseVendor:
-                return "Buy from House Vendor";
+                return SharedLocalization.Get("Buy from House Vendor");
             case IngredientPreferenceType.Crafting:
-                return "Crafting";
+                return SharedLocalization.Get("Crafting");
             case IngredientPreferenceType.Fishing:
-                return "Fishing";
+                return SharedLocalization.Get("Fishing");
             case IngredientPreferenceType.SpearFishing:
-                return "Spearfishing";
+                return SharedLocalization.Get("Spearfishing");
             case IngredientPreferenceType.Item:
-                return "Item";
+                return SharedLocalization.Get("Item");
             case IngredientPreferenceType.Marketboard:
-                return "Marketboard";
+                return SharedLocalization.Get("Marketboard");
             case IngredientPreferenceType.Mining:
-                return "Mining";
+                return SharedLocalization.Get("Mining");
             case IngredientPreferenceType.Venture:
-                return "Venture";
+                return SharedLocalization.Get("Venture");
             case IngredientPreferenceType.Duty:
-                return "Duty";
+                return SharedLocalization.Get("Duty");
             case IngredientPreferenceType.ExplorationVenture:
-                return "Venture (Exploration)";
+                return SharedLocalization.Get("Venture (Exploration)");
             case IngredientPreferenceType.Desynthesis:
-                return "Desynthesis";
+                return SharedLocalization.Get("Desynthesis");
             case IngredientPreferenceType.Reduction:
-                return "Reduction";
+                return SharedLocalization.Get("Reduction");
             case IngredientPreferenceType.ResourceInspection:
-                return "Resource Inspection";
+                return SharedLocalization.Get("Resource Inspection");
             case IngredientPreferenceType.Gardening:
-                return "Gardening";
+                return SharedLocalization.Get("Gardening");
             case IngredientPreferenceType.Mobs:
-                return "Monsters";
+                return SharedLocalization.Get("Monsters");
             case IngredientPreferenceType.Empty:
-                return "Nothing";
+                return SharedLocalization.Get("Nothing");
         }
 
         return ingredientPreferenceType.ToString();
