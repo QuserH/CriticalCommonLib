@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Linq;
 using AllaganLib.GameSheets.Sheets.Rows;
 using CriticalCommonLib.Enums;
+using CriticalCommonLib.Localization;
 using CriticalCommonLib.Interfaces;
 
 using Lumina;
@@ -107,7 +108,7 @@ public class InventoryChange : ICsv, IItem
                 {
                     if (ToItem != null)
                     {
-                        _formattedChange = "Gained";
+                        _formattedChange = SharedLocalization.Get("Gained");
                     }
 
                     break;
@@ -116,7 +117,7 @@ public class InventoryChange : ICsv, IItem
                 {
                     if (FromItem != null && ToItem != null)
                     {
-                        _formattedChange = "Moved";
+                        _formattedChange = SharedLocalization.Get("Moved");
                     }
 
                     break;
@@ -125,7 +126,7 @@ public class InventoryChange : ICsv, IItem
                 {
                     if (FromItem != null)
                     {
-                        _formattedChange = "Lost";
+                        _formattedChange = SharedLocalization.Get("Lost");
                     }
 
                     break;
@@ -134,7 +135,7 @@ public class InventoryChange : ICsv, IItem
                 {
                     if (ToItem != null && FromItem != null)
                     {
-                        _formattedChange = "Moved";
+                        _formattedChange = SharedLocalization.Get("Moved");
                     }
 
                     break;
@@ -146,12 +147,12 @@ public class InventoryChange : ICsv, IItem
                         if (FromItem.Quantity > ToItem.Quantity)
                         {
                             var lost = FromItem.Quantity - ToItem.Quantity;
-                            _formattedChange = "Lost";
+                            _formattedChange = SharedLocalization.Get("Lost");
                         }
                         else
                         {
                             var gained = ToItem.Quantity - FromItem.Quantity;
-                            _formattedChange = "Gained";
+                            _formattedChange = SharedLocalization.Get("Gained");
                         }
                     }
 
@@ -163,7 +164,7 @@ public class InventoryChange : ICsv, IItem
                     {
                         if (FromItem.RetainerMarketPrice != ToItem.RetainerMarketPrice)
                         {
-                            _formattedChange = "Market Price Updated";
+                            _formattedChange = SharedLocalization.Get("Market Price Updated");
                         }
                     }
 
@@ -173,7 +174,7 @@ public class InventoryChange : ICsv, IItem
                 {
                     if (FromItem != null && ToItem != null)
                     {
-                        _formattedChange = "Gearsets Changed";
+                        _formattedChange = SharedLocalization.Get("Gearsets Changed");
                     }
 
                     break;
@@ -182,7 +183,7 @@ public class InventoryChange : ICsv, IItem
                 {
                     if (ToItem != null && FromItem != null)
                     {
-                        _formattedChange = "Condition Changed";
+                        _formattedChange = SharedLocalization.Get("Condition Changed");
                     }
 
                     break;
@@ -191,7 +192,7 @@ public class InventoryChange : ICsv, IItem
                 {
                     if (ToItem != null && FromItem != null)
                     {
-                        _formattedChange = "Spiritbond Changed";
+                        _formattedChange = SharedLocalization.Get("Spiritbond Changed");
                     }
 
                     break;
