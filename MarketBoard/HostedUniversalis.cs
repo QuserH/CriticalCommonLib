@@ -10,8 +10,6 @@ using AllaganLib.Shared.Interfaces;
 using AllaganLib.Shared.Services;
 using CriticalCommonLib.Interfaces;
 using Dalamud.Plugin.Services;
-using Lumina.Excel;
-using Lumina.Excel.Sheets;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -21,13 +19,11 @@ namespace CriticalCommonLib.MarketBoard;
 public class HostedUniversalis : BackgroundService, IUniversalis
 {
     private readonly UniversalisUserAgent _userAgent;
-    private readonly ExcelSheet<World> _worldSheet;
     private readonly IFramework _framework;
     private readonly IHostedUniversalisConfiguration _hostedUniversalisConfiguration;
     public ILogger<HostedUniversalis> Logger { get; }
     public HttpClient HttpClient { get; }
     public BackgroundTaskQueue UniversalisQueue { get; }
-    private Dictionary<uint, string> _worldNames = new();
     public uint QueueTime { get; } = 5;
     public uint MaxRetries { get; } = 3;
     public DateTime? LastFailure { get; private set; }
@@ -36,10 +32,9 @@ public class HostedUniversalis : BackgroundService, IUniversalis
     public int QueuedCount => _queuedCount;
 
 
-    public HostedUniversalis(ILogger<HostedUniversalis> logger, UniversalisUserAgent userAgent, HttpClient httpClient, BackgroundTaskQueue.Factory taskQueueFactory, ExcelSheet<World> worldSheet, IFramework framework, IHostedUniversalisConfiguration hostedUniversalisConfiguration)
+    public HostedUniversalis(ILogger<HostedUniversalis> logger, UniversalisUserAgent userAgent, HttpClient httpClient, BackgroundTaskQueue.Factory taskQueueFactory, IFramework framework, IHostedUniversalisConfiguration hostedUniversalisConfiguration)
     {
         _userAgent = userAgent;
-        _worldSheet = worldSheet;
         _framework = framework;
         _hostedUniversalisConfiguration = hostedUniversalisConfiguration;
         Logger = logger;
@@ -142,24 +137,11 @@ public class HostedUniversalis : BackgroundService, IUniversalis
             Logger.LogError($"Maximum retries for universalis has been reached, cancelling.");
             return;
         }
-        string worldName;
-        if (!_worldNames.ContainsKey(worldId))
-        {
-            var world = _worldSheet.GetRowOrDefault(worldId);
-            if (world == null)
-            {
-                _queuedCount -= itemIdList.Count;
-                return;
-            }
-
-            _worldNames[worldId] = world.Value.Name.ExtractText();
-        }
-        worldName = _worldNames[worldId];
-
+        // 使用世界 ID 而不是世界名，确保国服（中文世界名）也能正常查询。
         var itemIdsString = String.Join(",", itemIdList.Select(c => c.ToString()).ToArray());
         Logger.LogTrace("Sending request for items {ItemIds} to universalis API.", itemIdsString);
         string url =
-            $"https://universalis.app/api/v2/{worldName}/{itemIdsString}?listings=20&entries=20";
+            $"https://universalis.app/api/v2/{worldId}/{itemIdsString}?listings=20&entries=20";
         try
         {
             if (token.IsCancellationRequested)

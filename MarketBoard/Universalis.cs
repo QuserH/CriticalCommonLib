@@ -11,8 +11,6 @@ using System.Reactive.Subjects;
 using System.Threading;
 using CriticalCommonLib.Extensions;
 using Dalamud.Plugin.Services;
-using Lumina.Excel;
-using Lumina.Excel.Sheets;
 
 #pragma warning disable SYSLIB0014
 #pragma warning disable 8618
@@ -22,13 +20,11 @@ namespace CriticalCommonLib.MarketBoard
     public class Universalis : IUniversalis
     {
         private readonly IFramework _framework;
-        private readonly ExcelSheet<World> _worldSheet;
         private readonly IPluginLog _pluginLog;
         private readonly UniversalisUserAgent _userAgent;
         private SerialQueue _apiRequestQueue = new SerialQueue();
         private List<IDisposable> _disposables = new List<IDisposable>();
         private Subject<(uint, uint)> _queuedItems = new Subject<(uint, uint)>();
-        private Dictionary<uint, string> _worldNames = new();
         private bool _tooManyRequests;
         private bool _initialised;
         private DateTime? _nextRequestTime;
@@ -38,10 +34,9 @@ namespace CriticalCommonLib.MarketBoard
         private int _queuedCount;
         private int _saleHistoryLimit = 7;
 
-        public Universalis(IFramework framework, ExcelSheet<World> worldSheet, IPluginLog pluginLog, UniversalisUserAgent userAgent)
+        public Universalis(IFramework framework, IPluginLog pluginLog, UniversalisUserAgent userAgent)
         {
             _framework = framework;
-            _worldSheet = worldSheet;
             _pluginLog = pluginLog;
             _userAgent = userAgent;
         }
@@ -140,25 +135,13 @@ namespace CriticalCommonLib.MarketBoard
                 return;
             }
 
-            string worldName;
-            if (!_worldNames.ContainsKey(worldId))
-            {
-                var world = _worldSheet.GetRowOrDefault(worldId);
-                if (world == null)
-                {
-                    return;
-                }
-
-                _worldNames[worldId] = world.Value.Name.ExtractText();
-            }
-            worldName = _worldNames[worldId];
-
+            // 使用世界 ID 而不是世界名，确保国服（中文世界名）也能正常查询。
             if (itemIds.Count() == 1)
             {
                 var dispatch = _apiRequestQueue.DispatchAsync(() =>
                 {
                     var itemId = itemIds.First();
-                    string url = $"https://universalis.app/api/{worldName}/{itemId}?listings=20&entries=20";
+                    string url = $"https://universalis.app/api/{worldId}/{itemId}?listings=20&entries=20";
 
                     HttpWebRequest request = (HttpWebRequest) WebRequest.Create(url);
                     request.Headers["User-Agent"] = $"{_userAgent.PluginName}/{_userAgent.PluginVersion}";
@@ -215,7 +198,7 @@ namespace CriticalCommonLib.MarketBoard
                     var itemIdsString = String.Join(",", itemIds.Select(c => c.ToString()).ToArray());
                     _pluginLog.Verbose($"Sending request for items {itemIdsString} to universalis API.");
                     string url =
-                        $"https://universalis.app/api/v2/{worldName}/{itemIdsString}?listings=20&entries=20";
+                        $"https://universalis.app/api/v2/{worldId}/{itemIdsString}?listings=20&entries=20";
 
                     HttpWebRequest request = (HttpWebRequest) WebRequest.Create(url);
                     request.Headers["User-Agent"] = $"{_userAgent.PluginName}/{_userAgent.PluginVersion}";
@@ -272,22 +255,9 @@ namespace CriticalCommonLib.MarketBoard
             {
                 return null;
             }
-            string worldName;
-            if (!_worldNames.ContainsKey(worldId))
-            {
-                var world = _worldSheet.GetRowOrDefault(worldId);
-                if (world == null)
-                {
-                    return null;
-                }
-
-                _worldNames[worldId] = world.Value.Name.ExtractText();
-            }
-            worldName = _worldNames[worldId];
-
             var dispatch = _apiRequestQueue.DispatchAsync(() =>
                 {
-                    string url = $"https://universalis.app/api/{worldName}/{itemId}?listings=20&entries=20";
+                    string url = $"https://universalis.app/api/{worldId}/{itemId}?listings=20&entries=20";
 
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
                     request.Headers["User-Agent"] = $"{_userAgent.PluginName}/{_userAgent.PluginVersion}";
