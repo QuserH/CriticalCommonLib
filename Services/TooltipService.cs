@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using CriticalCommonLib.Enums;
 using Dalamud.Game.Text.SeStringHandling;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
@@ -85,11 +86,12 @@ namespace CriticalCommonLib.Services
             protected InventoryItem Item => HoveredItem;
         }
 
-        private unsafe delegate byte ItemHoveredDelegate(IntPtr a1, IntPtr* a2, int* containerId, ushort* slotId, IntPtr a5, uint slotIdInt, IntPtr a7);
+        [return: MarshalAs(UnmanagedType.U1)]
+        private unsafe delegate bool ItemHoveredDelegate(AgentItemDetail* a1, InventoryItem** a2, FFXIVClientStructs.FFXIV.Client.Game.InventoryType* containerId, short* slotId, uint a5, uint slotIdInt, InventoryItem* a7);
         [Signature("E8 ?? ?? ?? ?? 84 C0 0F 84 ?? ?? ?? ?? 48 89 9C 24 ?? ?? ?? ?? 4C 89 A4 24", DetourName = nameof(ItemHoveredDetour), UseFlags = SignatureUseFlags.Hook)]
         private Hook<ItemHoveredDelegate>? _itemHoveredHook = null;
 
-        private unsafe delegate void* GenerateItemTooltip(AtkUnitBase* addonItemDetail, NumberArrayData* numberArrayData, StringArrayData* stringArrayData);
+        private unsafe delegate void GenerateItemTooltip(AddonItemDetail* addonItemDetail, NumberArrayData* numberArrayData, StringArrayData* stringArrayData);
         [Signature("48 89 5C 24 ?? 55 56 57 41 54 41 55 41 56 41 57 48 83 EC ?? 48 8B 42 ?? 4C 8B EA", DetourName = nameof(GenerateItemTooltipDetour), UseFlags = SignatureUseFlags.Hook)]
         private Hook<GenerateItemTooltip>? _generateItemTooltipHook = null;
 
@@ -110,9 +112,12 @@ namespace CriticalCommonLib.Services
 
         public static InventoryItem HoveredItem { get; private set; }
 
-        public unsafe byte ItemHoveredDetour(IntPtr a1, IntPtr* a2, int* containerid, ushort* slotid, IntPtr a5, uint slotidint, IntPtr a7) {
+        public unsafe bool ItemHoveredDetour(AgentItemDetail* a1, InventoryItem** a2, FFXIVClientStructs.FFXIV.Client.Game.InventoryType* containerid, short* slotid, uint a5, uint slotidint, InventoryItem* a7) {
             var returnValue = _itemHoveredHook!.Original(a1, a2, containerid, slotid, a5, slotidint, a7);
-            HoveredItem = *(InventoryItem*) (a7);
+            if (a7 != null)
+            {
+                HoveredItem = *a7;
+            }
             return returnValue;
         }
 
@@ -127,7 +132,7 @@ namespace CriticalCommonLib.Services
             _generateItemTooltipHook?.Dispose();
         }
 
-        public unsafe void* GenerateItemTooltipDetour(AtkUnitBase* addonItemDetail, NumberArrayData* numberArrayData, StringArrayData* stringArrayData)
+        public unsafe void GenerateItemTooltipDetour(AddonItemDetail* addonItemDetail, NumberArrayData* numberArrayData, StringArrayData* stringArrayData)
         {
             try
             {
@@ -150,7 +155,7 @@ namespace CriticalCommonLib.Services
             {
                 _logger.LogError(ex, "Exception while modifying item tooltip");
             }
-            return _generateItemTooltipHook!.Original(addonItemDetail, numberArrayData, stringArrayData);
+            _generateItemTooltipHook!.Original(addonItemDetail, numberArrayData, stringArrayData);
         }
 
         public enum ItemTooltipField : byte {
