@@ -1559,7 +1559,7 @@ namespace CriticalCommonLib.Services
                 }
             }
 
-            if (_loadedInventories.Contains((InventoryType)Enums.InventoryType.FreeCompanyCurrency))
+            // 国服缺少容器信息钩子，直接尝试；内部会检查 FC 窗口和数据是否就绪。
             {
                 var hasAgent = false;
                 var agentFreeCompany = AgentFreeCompany.Instance();
