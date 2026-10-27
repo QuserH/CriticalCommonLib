@@ -1749,18 +1749,36 @@ namespace CriticalCommonLib.Services
         public unsafe void ParseRetainerBags(InventorySortOrder currentSortOrder, BagChangeContainer changeSet)
         {
             var currentRetainer = _characterMonitor.ActiveRetainerId;
-            if (currentRetainer != 0 && _loadedInventories.Contains(InventoryType.RetainerPage1) &&
-                _loadedInventories.Contains(InventoryType.RetainerPage2) &&
-                _loadedInventories.Contains(InventoryType.RetainerPage3) &&
-                _loadedInventories.Contains(InventoryType.RetainerPage4) &&
-                _loadedInventories.Contains(InventoryType.RetainerPage5) &&
-                _loadedInventories.Contains(InventoryType.RetainerPage6) &&
-                _loadedInventories.Contains(InventoryType.RetainerPage7) &&
-                _loadedInventories.Contains(InventoryType.RetainerEquippedItems) &&
-                _loadedInventories.Contains(InventoryType.RetainerGil) &&
-                _loadedInventories.Contains(InventoryType.RetainerCrystals) &&
-                _loadedInventories.Contains(InventoryType.RetainerMarket)
-               )
+            if (currentRetainer == 0)
+            {
+                return;
+            }
+
+            // _loadedInventories is fed by the container-info network hook, whose
+            // international-client signature does not match on the CN client. Check
+            // the real containers instead so retainer bags keep refreshing.
+            var inventoryManager = InventoryManager.Instance();
+            if (inventoryManager == null)
+            {
+                return;
+            }
+
+            InventoryType[] requiredContainers =
+            {
+                InventoryType.RetainerPage1, InventoryType.RetainerPage2, InventoryType.RetainerPage3,
+                InventoryType.RetainerPage4, InventoryType.RetainerPage5,
+                InventoryType.RetainerEquippedItems, InventoryType.RetainerGil,
+                InventoryType.RetainerCrystals, InventoryType.RetainerMarket
+            };
+            foreach (var requiredContainer in requiredContainers)
+            {
+                var container = inventoryManager->GetInventoryContainer(requiredContainer);
+                if (container == null || !container->IsLoaded)
+                {
+                    return;
+                }
+            }
+
             {
                 if (!InMemoryRetainers.ContainsKey(currentRetainer))
                     InMemoryRetainers.Add(currentRetainer, new HashSet<InventoryType>());
@@ -1933,6 +1951,11 @@ namespace CriticalCommonLib.Services
                                 break;
                             default:
                                 continue;
+                        }
+
+                        if (currentBag == null)
+                        {
+                            continue;
                         }
 
                         if (sort.slotIndex >= currentBag->Size)
