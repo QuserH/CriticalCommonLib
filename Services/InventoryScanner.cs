@@ -1384,7 +1384,9 @@ namespace CriticalCommonLib.Services
             for (var b = 0; b < _houseBagTypes.Length; b++)
             {
                 var bagType = _houseBagTypes[b];
-                if (_loadedInventories.Contains(bagType))
+                // 国服缺少容器信息网络钩子，直接检查容器是否已加载。
+                if (InventoryManager.Instance()->GetInventoryContainer(bagType) != null &&
+                    InventoryManager.Instance()->GetInventoryContainer(bagType)->IsLoaded)
                 {
                     InMemory.Add(bagType);
                     var bag = InventoryManager.Instance()->GetInventoryContainer(bagType);
@@ -1508,7 +1510,9 @@ namespace CriticalCommonLib.Services
             for (var b = 0; b < _freeCompanyBagTypes.Length; b++)
             {
                 var bagType = _freeCompanyBagTypes[b];
-                if (_loadedInventories.Contains(bagType))
+                // 国服缺少容器信息网络钩子，直接检查容器是否已加载。
+                if (InventoryManager.Instance()->GetInventoryContainer(bagType) != null &&
+                    InventoryManager.Instance()->GetInventoryContainer(bagType)->IsLoaded)
                 {
                     InMemory.Add(bagType);
                     var bag = InventoryManager.Instance()->GetInventoryContainer(bagType);
